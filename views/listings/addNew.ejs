@@ -1,0 +1,90 @@
+<% layout('/templets/boilerplate') -%>
+<div class="form-cover">
+  <form
+    class="travel-form row g-3 needs-validation"
+    action="/listing/submit-list"
+    method="POST"
+    novalidate
+  >
+    <div class="col-12">
+      <label for="title" class="form-label">Title:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        required
+      />
+      <div class="invalid-feedback">Please enter the Title.</div>
+    </div>
+    <br /><br />
+
+    <!-- Description Input -->
+    <div class="col-12">
+      <label for="description" class="form-label">Description:</label>
+      <textarea
+        id="description"
+        class="form-control"
+        name="description"
+        rows="4"
+        required
+      ></textarea>
+      <div class="invalid-feedback">Please enter the Description.</div>
+    </div>
+    <br /><br />
+
+    <!-- Image Upload -->
+    <div class="col-12">
+      <label for="image" class="form-label">Image:</label>
+      <input type="text" class="form-control" id="img" name="img" />
+    </div>
+    <br /><br />
+
+    <!-- Price Input -->
+    <div class="col-12">
+      <label for="price" class="form-label">Price:</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        name="price"
+        step="0.01"
+        required
+      />
+      <div class="invalid-feedback">Please enter the Price.</div>
+    </div>
+    <br /><br />
+
+    <!-- Location Input -->
+    <div class="col-md-6">
+      <label for="location" class="form-label">Location:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="location"
+        name="location"
+        required
+      />
+      <div class="invalid-feedback">Please enter the location.</div>
+    </div>
+
+    <!-- Country Input -->
+    <div class="col-md-6">
+      <label for="country" class="form-label">Country:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="country"
+        name="country"
+        required
+      />
+      <div class="invalid-feedback">Please enter the Country.</div>
+    </div>
+    <br /><br />
+
+    <!-- Submit Button -->
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>

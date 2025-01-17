@@ -1,0 +1,21 @@
+<% layout('/templets/boilerplate') -%>
+<div class="container">
+  <div class="row row-cols-3">
+    <% data.forEach(list => { %>
+
+    <div class="card-outer">
+      <a
+        href="listing/<%=list._id%>"
+        style="text-decoration: none; border-radius: 10px"
+      >
+        <div class="card" style="width: 22rem">
+          <img src="<%= list.image.url %>" class="card-img" alt="image" />
+          <div class="card-body">
+            <h5 class="card-title"><%= list.title %></h5>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% }) %>
+  </div>
+</div>

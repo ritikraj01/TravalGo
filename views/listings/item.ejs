@@ -1,0 +1,193 @@
+<% layout('/templets/boilerplate') -%>
+<style>
+  .card {
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 20px;
+    text-align: left;
+    color: #333;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2a9d8f;
+  }
+
+  .card-text {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  .card-text li {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #555;
+  }
+
+  a button,
+  form button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px 0 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #264653;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  a button:hover,
+  form button:hover {
+    background-color: #2a9d8f;
+  }
+
+  a button {
+    text-decoration: none;
+  }
+
+  form button {
+    background-color: #e76f51;
+  }
+
+  form button:hover {
+    background-color: #f4a261;
+  }
+  .review-section,
+  .reviews-display-section {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+  }
+
+  .review-section h3,
+  .reviews-display-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .review-section textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .rating-section label {
+    margin-right: 10px;
+  }
+
+  .review-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+</style>
+
+<div class="card">
+  <img src="<%=data.image.url%>" class="card-img-top" alt="image" />
+  <div class="card-body">
+    <h5 class="card-title"><%=data.title %></h5>
+    <ul class="card-text">
+      <li>Owned By: <%=data.owner.username %></li>
+    </ul>
+    <ul class="card-text">
+      <li><%=data.description %></li>
+      <li>&#8377;<%=data.price.toLocaleString("en-IN") %></li>
+      <li><%=data.location %></li>
+      <li><%=data.country %></li>
+    </ul>
+  </div>
+  <% if(userInfo && data.owner._id.equals(userInfo._id)) { %>
+  <div
+    style="display: flex; justify-content: space-between; padding: 0 20px 20px"
+  >
+    <a href="/listing/edit/<%= data._id %>"><button>Edit</button></a>
+    <form method="POST" action="/listing/<%=data._id%>?_method=DELETE">
+      <button>Delete</button>
+    </form>
+  </div>
+  <% } %>
+</div>
+<div>
+  <div class="review-section">
+    <h3>Submit a Review</h3>
+    <form
+      method="POST"
+      action="/listing/<%=data._id%>/review"
+      class="needs-validation"
+      novalidate
+    >
+      <div class="rating-section">
+        <label for="rating">Rate Us:</label>
+        <select name="rating" id="rating" type="number">
+          <option value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
+      </div>
+      <br />
+      <div class="col-12">
+        <textarea
+          class="form-control"
+          name="comment"
+          placeholder="Write your review here..."
+          rows="4"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Please leave a review.</div>
+      </div>
+      <button type="submit">Submit Review</button>
+    </form>
+  </div>
+</div>
+<% if (data.reviews) { %>
+<div class="reviews-display-section">
+  <h3>Reviews</h3>
+  <div class="row row-cols-3">
+    <% data.reviews.forEach(review =>{ %>
+    <div class="card review-item" style="width: 25rem">
+      <p><strong>@ <%= review.auther.username %></strong></p>
+      <p><strong>Rating:</strong> <%= review.rating %>/5</p>
+      <p><strong>Review:</strong> <%= review.comment %></p>
+      <form
+        method="post"
+        action="/listing/<%=data._id%>/review/<%= review._id%>?_method=DELETE"
+      >
+        <% if ( userInfo && review.auther._id.equals(userInfo._id)) { %>
+        <button>Delete</button>
+        <% } %>
+      </form>
+    </div>
+    <% })} %>
+  </div>
+</div>

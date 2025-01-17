@@ -1,0 +1,15 @@
+.card-outer {
+  padding: 8px;
+}
+
+.card {
+  border-radius: 10px !important;
+}
+.card-img {
+  max-width: 22rem;
+  height: 220px;
+  overflow: hidden;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-radius: 0;
+}

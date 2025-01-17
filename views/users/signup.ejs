@@ -1,0 +1,58 @@
+<% layout('/templets/boilerplate') -%>
+<div class="form-cover">
+  <form
+    class="travel-form row g-3 needs-validation"
+    action="/user/signup"
+    method="POST"
+    novalidate
+  >
+    <div class="col-12">
+      <label for="email" class="form-label">E-mail:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        name="email"
+        required
+      />
+      <div class="invalid-feedback">Please enter the email.</div>
+    </div>
+    <br /><br />
+
+    <!-- Location Input -->
+    <div class="col-12">
+      <label for="username" class="form-label">User-Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        required
+      />
+      <div class="invalid-feedback">Please enter username.</div>
+    </div>
+
+    <!-- Country Input -->
+    <div class="col-12">
+      <label for="password" class="form-label">Password:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="password"
+        name="password"
+        required
+      />
+      <div class="invalid-feedback">Please enter the Password.</div>
+    </div>
+    <br /><br />
+
+    <!-- Submit Button -->
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+    <div class="col-12 mt-3">
+      <p>Already have an account?</p>
+      <a href="user/login" class="btn btn-secondary">Login</a>
+    </div>
+  </form>
+</div>

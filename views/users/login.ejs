@@ -1,0 +1,41 @@
+<% layout('/templets/boilerplate') -%>
+<div class="form-cover">
+  <form
+    class="travel-form row g-3 needs-validation"
+    action="/user/login"
+    method="POST"
+    novalidate
+  >
+    <!-- UserName Input -->
+    <div class="col-12">
+      <label for="username" class="form-label">User-Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        required
+      />
+      <div class="invalid-feedback">Please enter username.</div>
+    </div>
+
+    <!-- Password Input -->
+    <div class="col-12">
+      <label for="password" class="form-label">Password:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="password"
+        name="password"
+        required
+      />
+      <div class="invalid-feedback">Please enter the Password.</div>
+    </div>
+    <br /><br />
+
+    <!-- Login Button -->
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</div>
